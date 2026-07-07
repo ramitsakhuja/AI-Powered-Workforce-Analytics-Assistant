@@ -100,19 +100,19 @@ AI-Powered-Workforce-Analytics-Assistant
 
 ## Executive Overview
 
-![Dashboard 1](Screenshots/dashboard page1.png)
+![Dashboard 1](Screenshots/dashboard_page1.png)
 
 ---
 
 ## Attrition Analysis
 
-![Dashboard 2](Screenshots/dashboard page2.png)
+![Dashboard 2](Screenshots/dashboard_page2.png)
 
 ---
 
 ## Retention Drivers
 
-![Dashboard 3](Screenshots/dashboard page3.png)
+![Dashboard 3](Screenshots/dashboard_page3.png)
 
 ---
 
