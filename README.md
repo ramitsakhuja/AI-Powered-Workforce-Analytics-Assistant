@@ -258,6 +258,6 @@ streamlit run app.py
 
 Aspiring Data Analyst | AI Enthusiast
 
-**LinkedIn:** https://www.linkedin.com/in/ramitsakhuja
+**LinkedIn:** https://www.linkedin.com/in/ramit-sakhuja
 
 **GitHub:** https://github.com/ramitsakhuja
