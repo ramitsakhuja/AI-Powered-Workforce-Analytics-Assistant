@@ -1,121 +1,206 @@
-# Employee-Attrition-Workforce-Analytics-Dashboard
+# 💬 AI-Powered Workforce Analytics Assistant
 
-## Overview
-
-This project analyzes workforce data for 1,470 employees to identify employee attrition patterns, workforce demographics, compensation trends, and key retention drivers.
-
-The project combines SQL-based exploratory data analysis with an interactive Power BI dashboard to generate actionable HR insights and support workforce decision-making.
+An end-to-end HR Analytics project that combines **SQL, Power BI, Python, SQLite, Streamlit, and Groq LLM** to analyze employee attrition and provide AI-powered workforce insights through a conversational assistant.
 
 ---
 
-## Objectives
+## 📌 Project Overview
 
-* Analyze employee attrition across departments, job roles, tenure groups, and salary bands.
-* Identify workforce segments with higher turnover risk.
-* Evaluate the impact of overtime, employee satisfaction, work-life balance, and compensation on retention.
-* Build an interactive dashboard for HR analytics and workforce planning.
+This project analyzes HR data for **1,470 employees** to identify workforce trends, employee attrition patterns, salary insights, tenure distribution, and key retention drivers.
 
----
-
-## Tools & Technologies
-
-* SQL (MySQL)
-* Power BI
-* Microsoft Excel
-* DAX
+In addition to interactive Power BI dashboards, the project includes an **AI-powered conversational assistant** that allows users to ask HR-related questions in natural language and receive business-friendly responses generated using Groq LLM.
 
 ---
 
-## Dataset
+## 🚀 Features
 
-* IBM HR Analytics Employee Attrition Dataset
-* Total Employees: 1,470
-* Features include employee demographics, compensation, job roles, satisfaction metrics, tenure, and attrition status.
+### 📊 Interactive Power BI Dashboard
+- Executive Workforce Overview
+- Employee Attrition Analysis
+- Employee Retention Drivers
+- Dynamic Filters & KPIs
+- Business Insights Section
+
+### 🤖 AI Workforce Analytics Assistant
+Ask questions such as:
+
+- How many employees are there?
+- What is the attrition rate?
+- Which department has the highest attrition?
+- Which job role has the highest attrition?
+- What is the average employee age?
+- Give me an executive summary.
+- Does overtime affect attrition?
+- Show salary band analysis.
+- Show tenure analysis.
 
 ---
 
-## SQL Analysis
+## 🛠 Tech Stack
 
-Performed workforce analysis using 22 SQL queries covering:
+- **SQL (MySQL)** – Data Analysis
+- **Power BI** – Dashboard Development
+- **Python**
+- **SQLite**
+- **Streamlit**
+- **Groq API (Llama 3.3 70B)**
+- **Pandas**
+- **Python Dotenv**
 
-### KPI Analysis
+---
 
-* Total Employees
-* Attrition Count
-* Attrition Rate
-* Average Employee Age
-* Average Monthly Income
 
-### Workforce Analysis
+## 📊 Dashboard Highlights
 
-* Employee Distribution by Department
-* Employee Distribution by Gender
-* Average Salary by Department
+### Executive Overview
+- Total Employees
+- Attrition Count
+- Attrition Rate
+- Average Age
+- Average Monthly Income
 
 ### Attrition Analysis
+- Department-wise Attrition
+- Job Role Analysis
+- Education Field Analysis
+- Marital Status Analysis
+- Tenure Analysis
 
-* Department-wise Attrition
-* Job Role Attrition
-* Education Field Attrition
-* Marital Status Attrition
-* Overtime Impact Analysis
-
-### Employee Experience Analysis
-
-* Job Satisfaction Analysis
-* Environment Satisfaction Analysis
-* Work-Life Balance Analysis
-
-### Advanced Analysis
-
-* Tenure Band Analysis
-* Salary Band Analysis
-* Department-wise Attrition Rate
-* Top 5 Highest Paying Job Roles
-* Job Role Ranking using Window Functions
+### Employee Retention Drivers
+- Salary Band Analysis
+- Overtime Analysis
+- Work-Life Balance
+- Environment Satisfaction
+- Job Satisfaction
 
 ---
 
-## Power BI Dashboard
+## 🗄 SQL Analysis
 
-The dashboard consists of three interactive pages:
+The project includes **22 business-focused SQL queries** covering:
 
-### 1. Executive Overview
-
-* Workforce KPIs
-* Department Analysis
-* Gender Distribution
-* Age Group Analysis
-
-### 2. Attrition Analysis
-
-* Job Role Analysis
-* Education Field Analysis
-* Marital Status Analysis
-* Tenure Band Analysis
-
-### 3. Retention Drivers
-
-* Overtime Impact
-* Job Satisfaction Analysis
-* Environment Satisfaction Analysis
-* Work-Life Balance Analysis
-* Salary Band Analysis
+- Employee Count
+- Attrition Count
+- Attrition Rate
+- Average Age
+- Average Monthly Income
+- Department Analysis
+- Gender Analysis
+- Job Role Analysis
+- Education Field Analysis
+- Marital Status Analysis
+- Salary Band Analysis
+- Tenure Analysis
+- Department-wise Attrition Rate
+- Highest Paying Job Roles
+- Window Functions (Ranking)
 
 ---
 
-## Key Insights
+## 🤖 AI Assistant Workflow
 
-* Overall Attrition Rate: 16.12%
-* Research & Development records the highest employee attrition.
-* Laboratory Technicians show the highest attrition among job roles.
-* Employees with 0–2 years of tenure experience the highest turnover.
-* Overtime employees are significantly more likely to leave.
-* Low-income employees account for the highest employee exits.
-* Low environment satisfaction is strongly associated with attrition.
+```
+User Question
+      │
+      ▼
+Streamlit Chat Interface
+      │
+      ▼
+Python Chatbot
+      │
+      ▼
+SQLite Database
+      │
+      ▼
+SQL Query Execution
+      │
+      ▼
+Query Result
+      │
+      ▼
+Groq LLM
+      │
+      ▼
+Natural Language Business Explanation
+```
+
+The chatbot retrieves data directly from the SQLite database using SQL queries and uses Groq LLM to convert the query results into concise, professional business insights.
 
 ---
 
-## Business Impact
+## ⚙ Installation
 
-This project demonstrates how SQL and Power BI can be used together to transform workforce data into actionable insights, helping organizations understand attrition patterns and improve employee retention strategies.
+Clone the repository
+
+```bash
+git clone https://github.com/yourusername/AI-Powered-Workforce-Analytics-Assistant.git
+```
+
+Navigate to the project folder
+
+```bash
+cd AI-Powered-Workforce-Analytics-Assistant
+```
+
+Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Create a `.env` file
+
+```text
+GROQ_API_KEY=your_api_key_here
+```
+
+Create the SQLite database
+
+```bash
+python database.py
+```
+
+Run the application
+
+```bash
+streamlit run app.py
+```
+
+---
+
+## 📈 Key Business Insights
+
+- Workforce consists of **1,470 employees**.
+- Overall employee attrition rate is **16.12%**.
+- Research & Development records the highest employee attrition.
+- Laboratory Technicians show the highest employee turnover.
+- Employees with **0–2 years** of tenure leave most frequently.
+- Low-income employees experience the highest attrition.
+- Overtime is associated with increased employee exits.
+
+---
+
+## 🎯 Skills Demonstrated
+
+- SQL
+- Data Analysis
+- Business Intelligence
+- Power BI
+- Python
+- SQLite
+- Streamlit
+- Large Language Models (LLMs)
+- Prompt Engineering
+- API Integration
+- Dashboard Design
+- Data Storytelling
+
+---
+
+## 👨‍💻 Author
+
+**Ramit Sakhuja**
+
+B.Tech (Artificial Intelligence & Machine Learning)
+
+Aspiring Data Analyst | AI Enthusiast
