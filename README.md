@@ -118,7 +118,7 @@ AI-Powered-Workforce-Analytics-Assistant
 
 # 🤖 AI Assistant
 
-![Chatbot](Screenshots/chatbot.png)
+![Chatbot](Screenshots/Chatbot.png)
 
 The conversational assistant converts natural language questions into SQL-powered workforce insights and explains the results using Groq LLM.
 
