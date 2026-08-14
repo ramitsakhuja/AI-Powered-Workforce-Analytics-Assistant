@@ -1,6 +1,6 @@
 # 💬 AI-Powered Workforce Analytics Assistant
 
-> An end-to-end HR Analytics project that combines **SQL, Power BI, Python, SQLite, Streamlit, and Groq LLM** to transform workforce data into actionable business insights through an AI-powered conversational assistant.
+> An end-to-end HR Analytics project that combines **SQL, Power BI, Python, SQLite, Streamlit, and Groq LLM** to transform workforce data into actionable business insights through an AI-powered conversational assistant that writes and validates its own SQL.
 
 ---
 
@@ -8,7 +8,7 @@
 
 This project analyzes workforce data for **1,470 employees** to uncover employee attrition patterns, workforce demographics, compensation trends, and key retention drivers.
 
-Beyond interactive dashboards, the project includes a **Conversational Workforce Analytics Assistant** that enables users to ask HR-related questions in natural language and receive concise, business-friendly insights powered by **Groq LLM**.
+Beyond interactive dashboards, the project includes a **Conversational Workforce Analytics Assistant** that lets users ask open-ended HR questions in natural language. Rather than matching questions against a fixed list, the assistant uses an LLM to **generate a SQL query on the fly**, validates it against a set of safety rules, executes it against the database, and explains the result in plain business language.
 
 ---
 
@@ -26,25 +26,29 @@ Beyond interactive dashboards, the project includes a **Conversational Workforce
 
 ---
 
-### 🤖 AI Workforce Analytics Assistant
+### 🤖 AI Workforce Analytics Assistant (Text-to-SQL)
 
-Ask questions such as:
+Ask open-ended questions such as:
 
 - How many employees are there?
 - What is the attrition rate?
 - Which department has the highest attrition?
 - Which job role has the highest attrition?
 - Does overtime affect attrition?
-- Show salary band analysis.
-- Show tenure analysis.
+- What's the average income for employees who left vs. stayed?
+- Show me the top 5 job roles by average monthly income.
 - Give me an executive summary.
 
-The assistant:
+The assistant isn't limited to a fixed set of pre-written questions — it can answer novel phrasings and combinations because it writes the SQL itself rather than matching keywords.
 
-- Retrieves answers directly from a SQLite database
-- Executes SQL queries
-- Uses Groq LLM to generate professional business explanations
-- Never fabricates numerical results
+**How it works:**
+
+- The user's question and the database schema are sent to **Groq's Llama 3.3 70B**, which generates a single SQL `SELECT` query.
+- The query passes through a **validation layer** before it's allowed to run: it must be a single read-only `SELECT` statement against the known table, with no `INSERT` / `UPDATE` / `DELETE` / `DROP` / `PRAGMA` / multi-statement queries permitted.
+- If the query fails (bad column, syntax error), the error is fed back to the LLM and it retries — up to two additional attempts.
+- The validated query executes directly against the SQLite database.
+- The result is passed to Groq LLM again to generate a concise, professional explanation. The LLM explains the numbers — it never invents them.
+- The generated SQL is shown in the app alongside the answer, so the query behind every response is fully transparent and auditable.
 
 ---
 
@@ -56,7 +60,7 @@ The assistant:
 | Database | SQLite |
 | Query Language | SQL |
 | Data Visualization | Power BI |
-| AI | Groq Llama 3.3 70B |
+| AI | Groq Llama 3.3 70B (text-to-SQL + explanation) |
 | Web App | Streamlit |
 | Libraries | Pandas, Python-dotenv |
 
@@ -120,13 +124,13 @@ AI-Powered-Workforce-Analytics-Assistant
 
 ![Chatbot](Screenshots/chatbot.png)
 
-The conversational assistant converts natural language questions into SQL-powered workforce insights and explains the results using Groq LLM.
+The conversational assistant converts natural language questions into a **generated SQL query**, runs it against the workforce database, and explains the results using Groq LLM. The SQL behind each answer is shown in the app for transparency.
 
 ---
 
 # 🗄 SQL Analysis
 
-The project includes **22 business-focused SQL queries**, including:
+The project includes **22 business-focused SQL queries** written and analyzed directly against the database, including:
 
 - Total Employees
 - Attrition Count
@@ -150,6 +154,8 @@ The project includes **22 business-focused SQL queries**, including:
 - Department-wise Attrition Rate
 - Window Functions (Ranking)
 
+These queries formed the exploratory backbone of the project; the conversational assistant now generates equivalent (and novel) queries dynamically at runtime.
+
 ---
 
 # 🔄 AI Workflow
@@ -164,19 +170,25 @@ Streamlit Interface
 Python Chatbot
       │
       ▼
-SQLite Database
+Groq LLM — generates a SQL query from the question + schema
       │
       ▼
-SQL Query Execution
+Validation layer — single SELECT only, no destructive statements,
+correct table, no multi-statement queries
+      │
+      ├── fails validation / execution ──► error fed back to LLM,
+      │                                    retries (up to 2x)
+      ▼
+SQLite Database — validated query executes
       │
       ▼
 Query Result
       │
       ▼
-Groq LLM
+Groq LLM — turns the result into a business-friendly explanation
       │
       ▼
-Business-Friendly Explanation
+Answer + generated SQL shown to user
 ```
 
 ---
@@ -243,6 +255,8 @@ streamlit run app.py
 - Business Intelligence
 - Streamlit
 - Large Language Models (LLMs)
+- Text-to-SQL generation
+- LLM output validation & guardrails (safe query execution)
 - Prompt Engineering
 - API Integration
 - Dashboard Design
